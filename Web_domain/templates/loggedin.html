@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>My Tech Stack</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="../static/assets/img/gnelf.png" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="../static/css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <a  href="#page-top" style="z-index: 1;"><img src="../static/assets/img/nav-logo.png" alt="..." width="70px" height="70px" /></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#techstack">Tech Stack</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('account') }}">{{username}}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+                    </ul>
+                </div>
+                    <div class="form-outline" data-mdb-input-init>
+                      <input type="search" id="sbar" class="form-control" placeholder="Search for tools"/>
+                    </div>
+                    <button type="button" class="btn btn-primary" data-mdb-ripple-init>
+                      <i class="fas fa-search"></i>
+                    </button>
+                  </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container">
+                <div class="masthead-subheading">Welcome To My Tech Stack!</div>
+                <a class="btn btn-primary btn-xl text-uppercase" href="#techstack">Click here for My Tech Stack</a>
+            </div>
+            <h2> You can add a tool by clicking the button below.</h2>
+            <button type="submit" href="{{ url_for('addtool') }}class="btn btn-success">Add Tool</button>
+        </header>
+        <!-- About-->
+        <section class="page-section" id="about">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase"><u>About</u></h2>
+                    
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-4">
+                            <!-- <img src="../static//img/gnelf.png" alt="..." width="200px" height="200px" style="border-radius: 50%;" /> -->
+                        </span>
+                        <h4 class="my-3">Useful tools</h4>
+                        <p class="text-muted">Explore our complete tech stack to find the tools you need for website development. These resources empower you to build and enhance your site while giving you the confidence to try out new tools effectively.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <!-- <img src="../static//img/gnelf.png" alt="..." width="200px" height="200px" style="border-radius: 50%;" /> -->
+                        <h4 class="my-3">Strong built community</h4>
+                        <p class="text-muted">Feel free to ask the community any questions, big or small. We’re committed to supporting every member, whether you're new to web development or a seasoned pro. We also encourage everyone to contribute by adding tools and sharing reviews, offering valuable insights from each user’s experience.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <!-- <img src="../static//img/gnelf.png" alt="..." width="200px" height="200px" style="border-radius: 50%;" /> -->
+                        <h4 class="my-3">Access anytime</h4>
+                        <p class="text-muted">Access our complete listings of tech tools from anywhere—even on your mobile device! Whether you're on the go or working from your desktop, our platform allows you to explore and discover tools easily. Stay up-to-date with the latest resources and innovations, empowering you to enhance your projects and productivity no matter where you are.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Tech stack Grid-->
+        <!-- Tech stack Grid-->
+        <section class="page-section bg-light" id="techstack">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Tech Stack</h2>
+                    <h3 class="section-subheading text-muted">Here are a few higlighted tools to try out.</h3>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <!-- techstack item 1-->
+                        <div class="techstack-item">
+                            <a class="techstack-link" data-bs-toggle="modal" href="#techstackModal1">
+                                <div class="techstack-hover">
+                                    <div class="techstack-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                                </div>
+                                <img class="img-fluid" src="../static/assets/img/techstack/1.png" alt="..." />
+                            </a>
+                            <div class="techstack-caption">
+                                <div class="techstack-caption-heading">Javascript</div>
+                                <div class="techstack-caption-subheading text-muted">Backend</div>
+                                
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <!-- techstack item 2-->
+                        <div class="techstack-item">
+                            <a class="techstack-link" data-bs-toggle="modal" href="#techstackModal2">
+                                <div class="techstack-hover">
+                                    <div class="techstack-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                                </div>
+                                <img class="img-fluid" src="../static/assets/img/techstack/2.png" alt="..." />
+                            </a>
+                            <div class="techstack-caption">
+                                <div class="techstack-caption-heading">MongoDB</div>
+                                <div class="techstack-caption-subheading text-muted">Database</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <!-- techstack item 3-->
+                        <div class="techstack-item">
+                            <a class="techstack-link" data-bs-toggle="modal" href="#techstackModal3">
+                                <div class="techstack-hover">
+                                    <div class="techstack-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                                </div>
+                                <img class="img-fluid" src="../static/assets/img/techstack/3.png" alt="..." />
+                            </a>
+                            <div class="techstack-caption">
+                                <div class="techstack-caption-heading">MySQL</div>
+                                <div class="techstack-caption-subheading text-muted">Database</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
+                        <!-- techstack item 4-->
+                        <div class="techstack-item">
+                            <a class="techstack-link" data-bs-toggle="modal" href="#techstackModal4">
+                                <div class="techstack-hover">
+                                    <div class="techstack-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                                </div>
+                                <img class="img-fluid" src="../static/assets/img/techstack/4.png" alt="..." />
+                            </a>
+                            <div class="techstack-caption">
+                                <div class="techstack-caption-heading">Adobe Photoshop</div>
+                                <div class="techstack-caption-subheading text-muted">Design</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
+                        <!-- techstack item 5-->
+                        <div class="techstack-item">
+                            <a class="techstack-link" data-bs-toggle="modal" href="#techstackModal5">
+                                <div class="techstack-hover">
+                                    <div class="techstack-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                                </div>
+                                <img class="img-fluid" src="../static/assets/img/techstack/5.png" alt="..." />
+                            </a>
+                            <div class="techstack-caption">
+                                <div class="techstack-caption-heading">Chat GPT</div>
+                                <div class="techstack-caption-subheading text-muted">AI</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <!-- techstack item 6-->
+                        <div class="techstack-item">
+                            <a class="techstack-link" data-bs-toggle="modal" href="#techstackModal6">
+                                <div class="techstack-hover">
+                                    <div class="techstack-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                                </div>
+                                <img class="img-fluid" src="../static/assets/img/techstack/6.png" alt="..." />
+                            </a>
+                            <div class="techstack-caption">
+                                <div class="techstack-caption-heading">Battleye</div>
+                                <div class="techstack-caption-subheading text-muted">Security</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Team-->
+        <section class="page-section bg-light" id="team">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Our Current Members</h2>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="../static/assets/img/gnelf.png" alt="..." />
+                            <h4>Cameron Buttery</h4>
+                            <p class="text-muted">Tech Enthusiast</p>
+                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Twitter Profile"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Facebook Profile"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </section>
+
+        <!-- Contact-->
+        <section class="page-section" id="contact">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Contact Us</h2>
+                </div>
+                <form id="contactForm">
+                    <div class="row align-items-stretch mb-5">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <!-- Name input-->
+                                <input class="form-control" id="name" type="text" placeholder="Your Name *" data-sb-validations="required" />
+                                <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                            </div>
+                            <div class="form-group">
+                                <!-- Email address input-->
+                                <input class="form-control" id="email" type="email" placeholder="Your Email *" data-sb-validations="required,email" />
+                                <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
+                                <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+                            </div>
+                            <div class="form-group mb-md-0">
+                                <!-- Phone number input-->
+                                <input class="form-control" id="phone" type="tel" placeholder="Your Phone *" data-sb-validations="required" />
+                                <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group form-group-textarea mb-md-0">
+                                <!-- Message input-->
+                                <textarea class="form-control" id="message" placeholder="Your Message *" data-sb-validations="required"></textarea>
+                                <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Submit success message-->
+                    <!-- This is what your users will see when the form has successfully submitted-->
+                    <div class="d-none" id="submitSuccessMessage">
+                        <div class="text-center text-white mb-3">
+                            <div class="fw-bolder">Form submission successful!</div>
+                        </div>
+                    </div>
+                    <!-- Submit error message-->
+                    <!-- This is what your users will see when there is-->
+                    <!-- an error submitting the form-->
+                    <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+                    <!-- Submit Button-->
+                    <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase disabled" id="submitButton" type="submit">Send Message</button></div>
+                </form>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="footer py-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 text-lg-start">Copyright &copy; My Tech Stack 2023</div>
+                    <div class="col-lg-4 my-3 my-lg-0">
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="col-lg-4 text-lg-end">
+                        <a class="link-dark text-decoration-none me-3" href="#!">Privacy Policy</a>
+                        <a class="link-dark text-decoration-none" href="#!">Terms of Use</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- techstack Modals-->
+        <!-- techstack item 1 modal popup-->
+        <div class="techstack-modal modal fade" id="techstackModal1" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="../static/assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Project details-->
+                                    <h2 class="text-uppercase">Javascript</h2>
+                                    <img class="img-fluid d-block mx-auto" src="../static/assets/img/techstack/1.png" alt="..." />
+                                    <p>JavaScript is a versatile, high-level programming language commonly used in web development to create dynamic and interactive user experiences. Originally created in 1995 by Brendan Eich while working at Netscape, JavaScript was developed to enable interactive elements on web pages, distinguishing it from HTML (for structure) and CSS (for styling). Today, it's one of the core technologies of the web, alongside HTML and CSS.</p>
+                                    <ul class="list-inline">
+                                        <li>
+                                            <strong>Company:</strong>
+                                            Oracle Corporation
+                                        </li>
+                                        <li>
+                                            <strong>Category:</strong>
+                                            Backend
+                                        </li>
+                                        <li>
+                                            <button onclick="displayMessage()"> Like! </button>
+                                            <div id="clicks"> Likes: 0 </div>
+                                            <script>
+                                                let likeCount = 0;
+                                                function displayMessage() {
+                                                    likeCount++;
+                                                    document.getElementById('clicks').innerText = 'Likes: ' + likeCount;
+                                                }
+                                            </script>
+                                        </li>
+                                    </ul>
+                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                        <i class="fas fa-xmark me-1"></i>
+                                        Close Project
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- techstack item 2 modal popup-->
+        <div class="techstack-modal modal fade" id="techstackModal2" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="../static/assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Project details-->
+                                    <h2 class="text-uppercase">MongoDB</h2>
+                                    <img class="img-fluid d-block mx-auto" src="../static/assets/img/techstack/2.png" alt="..." />
+                                    <p>MongoDB is a popular NoSQL database designed for storing and managing large volumes of unstructured data. Unlike traditional relational databases, which use tables and rows, MongoDB stores data in a flexible, JSON-like format called BSON (Binary JSON). This structure makes MongoDB ideal for handling diverse, evolving data types, as you don’t need a strict schema, and it allows for more agile data management.</p>
+                                    <ul class="list-inline">
+                                        <li>
+                                            <strong>Company:</strong>
+                                            MongoDB
+                                        </li>
+                                        <li>
+                                            <strong>Category:</strong>
+                                            Database
+                                        </li>
+                                        <li>
+                                            <button onclick="displayMessage2()"> Like! </button>
+                                            <div id="clicks2"> Likes: 0 </div>
+                                            <script>
+                                                let likeCount2 = 0;
+                                                function displayMessage2() {
+                                                    likeCount2++;
+                                                    document.getElementById('clicks2').innerText = 'Likes: ' + likeCount2;
+                                                }
+                                            </script>
+                                        </li>
+                                    </ul>
+                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                        <i class="fas fa-xmark me-1"></i>
+                                        Close Project
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- techstack item 3 modal popup-->
+        <div class="techstack-modal modal fade" id="techstackModal3" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="../static/assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Project details-->
+                                    <h2 class="text-uppercase">MySQL</h2>
+                                    <img class="img-fluid d-block mx-auto" src="../static/assets/img/techstack/3.png" alt="..." />
+                                    <p>MySQL is a widely used open-source relational database management system (RDBMS) that organizes data into structured tables with rows and columns. Initially developed by MySQL AB in the 1990s, it is now owned by Oracle Corporation. MySQL is highly popular for applications that require structured data storage, strict schema requirements, and ACID (Atomicity, Consistency, Isolation, Durability) compliance, making it a go-to choice for many web applications, content management systems, and e-commerce platforms.</p>
+                                    <ul class="list-inline">
+                                        <li>
+                                            <strong>Company:</strong>
+                                            Oracle Corporation
+                                        </li>
+                                        <li>
+                                            <strong>Category:</strong>
+                                            Database
+                                        </li>
+                                            <li>
+                                                <button onclick="displayMessage3()"> Like! </button>
+                                                <div id="clicks3"> Likes: 0 </div>
+                                                <script>
+                                                    let likeCount3 = 0;
+                                                    function displayMessage3() {
+                                                        likeCount3++;
+                                                        document.getElementById('clicks3').innerText = 'Likes: ' + likeCount3;
+                                                    }
+                                                </script>
+                                            </li>
+                                    </ul>
+                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                        <i class="fas fa-xmark me-1"></i>
+                                        Close Project
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- techstack item 4 modal popup-->
+        <div class="techstack-modal modal fade" id="techstackModal4" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="../static/assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Project details-->
+                                    <h2 class="text-uppercase">Adobe Photoshop</h2>
+                                    <img class="img-fluid d-block mx-auto" src="../static/assets/img/techstack/4.png" alt="..." />
+                                    <p>
+                                        Adobe Photoshop is a powerful image editing and graphic design software widely used by photographers, designers, artists, and creative professionals. Developed by Adobe Inc., it has become the industry standard for editing raster graphics, enabling users to manipulate and enhance images with an extensive array of tools and features. Photoshop’s versatility spans from simple photo retouching to complex digital art, making it essential in various fields, including photography, web design, digital marketing, and video production.</p>
+                                    <ul class="list-inline">
+                                        <li>
+                                            <strong>Company:</strong>
+                                            Adobe
+                                        </li>
+                                        <li>
+                                            <strong>Category:</strong>
+                                            Design
+                                        </li>
+                                        <li>
+                                            <button onclick="displayMessage4()"> Like! </button>
+                                            <div id="clicks4"> Likes: 0 </div>
+                                            <script>
+                                                let likeCount4 = 0;
+                                                function displayMessage4() {
+                                                    likeCount4++;
+                                                    document.getElementById('clicks4').innerText = 'Likes: ' + likeCount4;
+                                                }
+                                            </script>
+                                        </li>
+                                    </ul>
+                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                        <i class="fas fa-xmark me-1"></i>
+                                        Close Project
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- techstack item 5 modal popup-->
+        <div class="techstack-modal modal fade" id="techstackModal5" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="../static/assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Project details-->
+                                    <h2 class="text-uppercase">Chat GPT</h2>
+                                    <img class="img-fluid d-block mx-auto" src="../static/assets/img/techstack/5.png" alt="..." />
+                                    <p>ChatGPT is an advanced language model developed by OpenAI, designed to understand and generate human-like text based on input it receives. It’s part of the GPT (Generative Pre-trained Transformer) family, which is based on transformer architecture, a machine learning framework that's well-suited for natural language processing tasks. ChatGPT is used in various applications, from answering questions to aiding in content creation, writing code, providing tutoring, and even engaging in casual conversation.</p>
+                                    <ul class="list-inline">
+                                        <li>
+                                            <strong>Company:</strong>
+                                            Open AI
+                                        </li>
+                                        <li>
+                                            <strong>Category:</strong>
+                                            AI
+                                        </li>
+                                        <li>
+                                            <button onclick="displayMessage5()"> Like! </button>
+                                            <div id="clicks5"> Likes: 0 </div>
+                                            <script>
+                                                let likeCount5 = 0;
+                                                function displayMessage5() {
+                                                    likeCount5++;
+                                                    document.getElementById('clicks5').innerText = 'Likes: ' + likeCount5;
+                                                }
+                                            </script>
+                                        </li>
+                                    </ul>
+                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                        <i class="fas fa-xmark me-1"></i>
+                                        Close Project
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- techstack item 6 modal popup-->
+        <div class="techstack-modal modal fade" id="techstackModal6" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="../static/assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Project details-->
+                                    <h2 class="text-uppercase">Battleye</h2>
+                                    <img class="img-fluid d-block mx-auto" src="../static/assets/img/techstack/6.png" alt="..." />
+                                    <p>BattlEye is an anti-cheat software used in various online multiplayer games to detect and prevent cheating, such as the use of hacks, aimbots, wallhacks, and other modifications that give players an unfair advantage. Developed by BattlEye Innovations, this software provides real-time protection against cheaters, enhancing the gaming experience by maintaining a fair playing environment. BattlEye has become a widely adopted anti-cheat solution for games like Rainbow Six Siege, PUBG, Fortnite, and Arma 3.</p>
+                                    <ul class="list-inline">
+                                        <li>
+                                            <strong>Company:</strong>
+                                            Battleye Innovations
+                                        </li>
+                                        <li>
+                                            <strong>Category:</strong>
+                                            Security
+                                        </li>
+                                        <li>
+                                            <button onclick="displayMessage6()"> Like! </button>
+                                            <div id="clicks6"> Likes: 0 </div>
+                                            <script>
+                                                let likeCount6 = 0;
+                                                function displayMessage6() {
+                                                    likeCount6++;
+                                                    document.getElementById('clicks6').innerText = 'Likes: ' + likeCount6;
+                                                }
+                                            </script>
+                                        </li>
+                                    </ul>
+                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                        <i class="fas fa-xmark me-1"></i>
+                                        Close Project
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="../static/js/scripts.js"></script>
+  
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>
