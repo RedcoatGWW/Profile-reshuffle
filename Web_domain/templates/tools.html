@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>My Tech Stack</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="../static/assets/img/gnelf.png" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="../static/css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <a  href="{{ url_for('index') }}"> <img src="../static/assets/img/nav-logo.png" alt="..." width="70px" height="70px"> </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">Tech Stack</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">Team</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('account') }}">{{username}}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+                    </ul>
+                </div>
+                    <div class="form-outline" data-mdb-input-init>
+                      <input type="search" id="sbar" class="form-control" placeholder="Search for tools"/>
+                    </div>
+                    <button type="button" class="btn btn-primary" data-mdb-ripple-init>
+                      <i class="fas fa-search"></i>
+                    </button>
+                  </div>
+            </div>
+        </nav>
+
+        <section class="page-section" id="contact">
+            <div id="posts" class="profile-content">
+                <h3>Create Post</h3>
+                <form action="{{ url_for('tools') }}" method="POST" class="toolspost" enctype="multipart/form-data">
+                    
+                    <textarea name="title" rows="1" cols="10" placeholder="What is the tool?"></textarea><br>
+                    <textarea name="category" rows="1" cols="10" placeholder="What is the tools category i.e backend?"></textarea><br>
+                    <textarea name="company" rows="1" cols="10" placeholder="Who created/owns the tool?"></textarea><br>
+                    <textarea name="content" rows="4" cols="20" placeholder="What does the tool do? Post a link at the end"></textarea><br>
+                    
+                    <!-- <input type="file" name="image" accept="image/*"><br> -->
+                    <button type="submit">Post</button>
+                </form>
+                
+                <div class="post-container">
+                    {% if posts %}
+                        {% for post in posts %}
+                            <div class="post">
+                                <div class="post-header">
+                                    <img src="../static/assets/img/gnelf.png" alt="post image" style="max-width: 300px; height: auto; border-radius: 50%;">
+                                    <br><strong>{{ post[1] }}</strong><br> <!-- Display username of the poster -->
+                                    <strong>{{ post[3] }}</strong><br> <!-- Display title of the post -->
+                                    <strong>Category: {{ post[5] }}</strong><br> <!--Display the category of the tool -->
+
+                                    <strong>Creator/Owner: {{ post[4] }}</strong><br> <!-- Display company of the tool -->
+                                </div>
+                                
+                                <div class="post-body">
+                                    <p>{{ post[2] }}</p>
+                                    {% if post[3] %}
+                                        <img src="{{ url_for('static', filename=post[3]) }}" alt="post image" style="max-width: 300px; height: auto">
+                                    {% endif %}
+                                </div>
+                                <div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            {% else %}
+                                <p>Its so quiet here :c  Be the first to post!</p>
+                            {% endif %}
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact-->
+        <!-- <section class="page-section" id="contact">
+           <div id="posts" class="profile-content">
+            <h3>Create Post</h3>
+            <form action="/tools" method="POST" class="toolspost" enctype="multipart/form-data">
+                <textarea name="post_text" rows="4" cols="20" placeholder="Write your post here"></textarea><br>
+                <input type="file" name="image" accept="image/*"><br> 
+                <button type="submit">Post</button>
+            </form>
+
+            <div class="post-container">
+                {% if posts %}
+                    {% for post in posts %}
+                        <div class="post">
+                            <div class="post-header">
+                               <strong>{{ post[1] }}</strong>
+                            </div>
+                            <div class="post-body">
+                                <p>{{ post[2] }}</p>
+                                {% if post[3] %}
+                                    <img src="{{ url_for('static', filename=post[3]) }}" alt="post image" style="max-width: 300px; height: auto">
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No posts available.</p>
+                {% endif %}
+            </div>
+        </div>
+        </section> -->
+
+        
+        <style>
+            .profile-content {
+                margin: 20px;
+                padding: 20px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                background-color: #f9f9f9;
+            }
+
+            .profile-content h3 {
+                margin-bottom: 20px;
+                font-size: 24px;
+                color: #333;
+            }
+
+            .toolspost textarea {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                margin-bottom: 10px;
+            }
+
+            .toolspost button {
+                padding: 10px 20px;
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            .toolspost button:hover {
+                background-color: #0056b3;
+            }
+
+            .post-container {
+                margin-top: 20px;
+            }
+
+            .post {
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                padding: 15px;
+                margin-bottom: 20px;
+                background-color: #fff;
+            }
+
+            .post-header {
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+
+            .post-body p {
+                margin: 0;
+            }
+
+            .post-body img {
+                margin-top: 10px;
+                max-width: 100%;
+                height: auto;
+                border-radius: 5px;
+            }
+        </style>
+
+
+
+
+    
+        <!-- Footer-->
+        <footer class="footer py-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 text-lg-start">Copyright &copy; My Tech Stack 2023</div>
+                    <div class="col-lg-4 my-3 my-lg-0">
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="col-lg-4 text-lg-end">
+                        <a class="link-dark text-decoration-none me-3" href="#!">Privacy Policy</a>
+                        <a class="link-dark text-decoration-none" href="#!">Terms of Use</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="../static/js/scripts.js"></script>
+  
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>

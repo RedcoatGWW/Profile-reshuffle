@@ -50,17 +50,24 @@
         <section class="page-section" id="account">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase" id = 'my_account'>My Account</h2>
-                    <h2 class="section-subheading">{{ username }}</h2>
-                    <h4 class="section-subheading">Email: {{ email }}</h4>
+                    <h2 class="section-heading text-uppercase" id = 'my_account'>My Account</h2><br>
+                    <h2 class="section-subheading">{{ username }}</h2><br>
+                    <h4 class="section-subheading">Email: {{ email }}</h4><br>
                     <h4 class="section-subheading">Password: ********</h4><button type="button" class="btn btn-primary mt-3" onclick="">Change password</button>
                 </div>
                 <div class="row text-center justify-content-center">
-                    <div class="col-md-4">
-                        <img id="profileImage" src="/static/assets/img/gnelf.png" alt="Profile Picture" width="200px" height="200px" style="border-radius: 50%;" />
+                    <!-- <div class="col-md-4">
+                        <img id="profileImage" src="{{ url_for('static', filename=profilepic) }}" alt="Profile Picture" width="200px" height="200px" style="border-radius: 50%;" />
                         <button type="button" class="btn btn-primary mt-3" onclick="document.getElementById('fileInput').click();">Edit Picture</button>
                         <input type="file" id="fileInput" style="display: none;" onchange="changeImage(event)" />
-                    </div>
+                    </div> -->      
+                    <!-- Display the profile photo if available -->
+                    {% if profilepic %}
+                        <img src="{{ url_for('static', filename='profilepic') }}" alt="Profilepic" id="profilepic" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
+                    {% else %}
+                        <p>No profile photo available</p>
+                    {% endif %}
+
                 </div>
             </div>
         </section>
@@ -74,6 +81,10 @@
                 
                 <div class="nav-item"><a class="button" href="{{ url_for('addtool') }}">Add Tool</a>
                     </div>
+                </div>
+                <div> 
+
+
                 </div>
             </section>
         </header>

@@ -50,8 +50,7 @@
                 <div class="masthead-subheading">Welcome To My Tech Stack!</div>
                 <a class="btn btn-primary btn-xl text-uppercase" href="#techstack">Click here for My Tech Stack</a>
             </div>
-            <h2> You can add a tool by clicking the button below.</h2>
-            <button type="submit" href="{{ url_for('addtool') }}class="btn btn-success">Add Tool</button>
+            
         </header>
         <!-- About-->
         <section class="page-section" id="about">
@@ -181,7 +180,9 @@
                             </div>
                         </div>
                     </div>
+                    <a class="btn btn-primary btn-xl text-uppercase" href="{{ url_for('tools') }}">Add a tool</a>
                 </div>
+            </div>
             </div>
         </section>
         <!-- Team-->

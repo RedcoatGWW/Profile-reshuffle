@@ -3,9 +3,16 @@ import mysql.connector
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField,TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
+import os
+import re
+from werkzeug.utils import secure_filename
+from mysql.connector import Error
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
+UPLOAD_FOLDER = '/static/uploads/'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # Function to get a database connection
 def get_db_connection():
@@ -18,6 +25,10 @@ def get_db_connection():
 
 # Connect to the database
 cnx = get_db_connection()
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+    
 
 @app.route('/')
 def index():
@@ -37,8 +48,8 @@ def login():
 
         if results:
             session['email'] = email
-            session['username'] = results[0][0]  # Assuming username is the second column
-            session['profilepic'] = results[0][5]  # Assuming profilepic is the sixth column
+            session['username'] = results[0][1]  # username is the second column
+            session['profilepic'] = results[0][5]  # profilepic is the sixth column
             update_query = 'UPDATE users SET logged_in = 1 WHERE email = %s'
             cursor.execute(update_query, (email,))
             cnx.commit()
@@ -48,13 +59,57 @@ def login():
     
     return render_template('login.html')
 
+@app.route('/tools', methods=['GET', 'POST'])
+def tools():
+    if 'username' not in session:
+        return redirect(url_for('index'))
+    
+    if request.method == 'POST':
+        print(request.form)  # Debugging statement
+        if not all(key in request.form for key in ('title', 'category', 'company', 'content')):
+            return "Missing form fields", 400
+        
+        title = request.form['title']
+        category = request.form['category']
+        company = request.form['company']
+        content = request.form['content']
+        profilepic = session.get('profilepic', None)
 
+        try:
+            with get_db_connection() as connection:
+                cursor = connection.cursor()
+                
+                insert_post_query = 'INSERT INTO posts (content, username, title, company, category, image_path) VALUES (%s, %s, %s, %s, %s, %s)'
+                cursor.execute(insert_post_query, (content, session['username'], title, company, category, profilepic))
+                post_id = cursor.lastrowid #creates id for each post
+
+                connection.commit()
+        except mysql.connector.Error as err:
+            print(f"Post failed: {err}")
+        except Exception as e:
+            print(f"An error occurred: {e}")
+        return redirect(url_for('tools'))
+
+    posts = []
+    try:
+        with get_db_connection() as connection:
+            cursor = connection.cursor()
+            cursor.execute('SELECT * FROM posts WHERE username = %s', (session['username'],))
+            posts = cursor.fetchall()
+    except mysql.connector.Error as err:
+        print(f"Fetching posts failed: {err}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+    return render_template('tools.html', posts=posts)
+
+        
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
         print(request.form)  # Debugging statement
-        if not all(key in request.form for key in ('username', 'password', 'email', 'phone', 'interests', 'profilepic')):
+        if not all(key in request.form for key in ('username', 'password', 'email', 'phone', 'interests')):
             return "Missing form fields", 400
         
         try:
@@ -63,7 +118,14 @@ def signup():
             email = request.form['email']
             phone = request.form['phone']
             interests = request.form['interests']
-            profilepic = request.form['profilepic']
+            image = request.files['image'] if 'image' in request.files else None
+            profilepic = None 
+
+            if image and allowed_file(image.filename):
+                filename = secure_filename(image.filename)
+                profilepic = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                image.save(profilepic)
+                profilepic = os.path.join('uploads', filename).replace('\\', '/')
 
             with get_db_connection() as connection:
                 cursor = connection.cursor()
@@ -73,6 +135,10 @@ def signup():
                 cursor.execute(check_query, (email,))
                 if cursor.fetchone():
                     return "Email is already taken", 69
+                check_query = 'SELECT * FROM users WHERE username = %s'
+                cursor.execute(check_query, (username,))
+                if cursor.fetchone():
+                    return "Username is already taken", 69
                 
                 query = 'INSERT INTO users (username, password, email, phone, interests, profilepic) VALUES (%s, %s, %s, %s, %s, %s)'
                 cursor.execute(query, (username, password, email, phone, interests, profilepic))
@@ -82,6 +148,8 @@ def signup():
         except Exception as e:
             print(f"Error: {e}")  # Print the error message
             return "An error occurred", 500
+
+    return render_template('signup.html')
     
     return render_template('signup.html')
 
@@ -109,14 +177,14 @@ def logout():
     if 'username' not in session:
         return redirect(url_for('login'))
 
-        with get_db_connection() as connection:
-            cursor = connection.cursor()
-            query = 'UPDATE users SET logged_in = 0 WHERE username = %s'
-            cursor.execute(query, (username,))
-            connection.commit()
+    with get_db_connection() as connection:
+        cursor = connection.cursor()
+        query = 'UPDATE users SET logged_in = 0 WHERE username = %s'
+        cursor.execute(query, (username,))
+        connection.commit()
 
-        session.pop('email', None)
-        print(f"user, {username} has logged out")
+    session.pop('email', None)
+    print(f"user, {username} has logged out")
     return redirect('/')
 
 # ------------------contact form-------------------
@@ -171,6 +239,7 @@ def addtool():
     else: 
         return render_template('addtool.html')
 
+    
 
 if __name__ == '__main__':
     app.run(debug=True)
