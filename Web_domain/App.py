@@ -239,7 +239,32 @@ def addtool():
     else: 
         return render_template('addtool.html')
 
-    
+
+@app.route('/delete_account', methods=['POST'])
+def deleted_account():
+    if 'username' not in session:
+        return redirect(url_for('index'))
+
+    username = session['username']  # Get the logged-in user's username
+
+    try:
+        with get_db_connection() as connection:
+            cursor = connection.cursor()
+
+            # Delete the user from the users table (including their username and password)
+            cursor.execute("DELETE FROM users WHERE username = %s", (username,))
+            connection.commit()
+
+        # Log the user out by clearing the session
+        session.pop('username', None)
+
+    except Exception as e:
+        print(f"Error deleting profile: {e}")
+        return redirect(url_for('account'))  # Redirect to profile in case of error
+
+    # Redirect to the home page after successful deletion
+    return redirect(url_for('index'))
+
 
 if __name__ == '__main__':
     app.run(debug=True)
