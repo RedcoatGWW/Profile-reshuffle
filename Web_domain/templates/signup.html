@@ -70,6 +70,7 @@
                         <input name="profilepic" type="file" class="form-control-file" id="file" onchange="previewImage(event)">
                         <img id="profilePreview" src="{{ url_for('static', filename=profilepic) }}" alt="Profile Preview" style="display:none; margin-top: 20px; max-width: 30%; height: auto; border-radius: 20%;">
                     </div>
+                    <!-- The images aren't sending to the server so this is a placeholder. See Error handelling in section 2 of the README -->
                     <div class="text-center">
                         <input class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit" value="Sign Up">
                     </div>
@@ -103,6 +104,7 @@
                         <input class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit" value="Sign Up">
                     </div>
                 </form> -->
+
                 
             </div>
         </section>

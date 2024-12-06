@@ -34,13 +34,29 @@
                         <li class="nav-item"><a class="nav-link" href="{{ url_for('account') }}">{{username}}</a></li>
                         <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
                     </ul>
-                </div>
-                    <div class="form-outline" data-mdb-input-init>
-                      <input type="search" id="sbar" class="form-control" placeholder="Search for tools"/>
-                    </div>
-                    <button type="button" class="btn btn-primary" data-mdb-ripple-init>
-                      <i class="fas fa-search"></i>
-                    </button>
+                    <input id="searchbar" onkeyup="searchTool()" type="text" name="search" placeholder="Search.." />
+                    <ul id="list" style="display: none;">
+                        <!-- Links within profilepage.html -->
+                        <li class="nav-item"><a href="#services">Posts!</a></li>
+                        <li class="nav-item"><a href="#about">About</a></li>
+                        <li class="nav-item"><a href="#contact">Contact us</a></li>
+                        <li class="nav-item"><a href="#U_posts">Your posts</a></li>
+                        <li class="nav-item"><a href="#bookmarks">Bookmarks</a></li>
+                        <li class="nav-item"><a href="#terms">Terms and conditions</a></li>
+                        <li class="nav-item"><a href="#page-top">Top of the page</a></li>
+                        <li class="nav-item"><a href="#bottom_page">Bottom of the page</a></li>
+                        <li class="nav-item"><a href="{{ url_for('account') }}">Account</a></li>
+                        <!-- Links outside the main page -->
+                        <li class="nav-item"><a href="#techstackModal1" data-bs-toggle="modal">JavaScript</a></li>
+                        <li class="nav-item"><a href="#techstackModal2" data-bs-toggle="modal">MongoDB</a></li>
+                        <li class="nav-item"><a href="#techstackModal3" data-bs-toggle="modal">MySQL</a></li>
+                        <li class="nav-item"><a href="#techstackModal4" data-bs-toggle="modal">Photoshop</a></li>
+                        <li class="nav-item"><a href="#techstackModal5" data-bs-toggle="modal">ChatGPT</a></li>
+                        <li class="nav-item"><a href="#techstackModal6" data-bs-toggle="modal">Battleeye</a></li>
+
+
+                    </ul>
+                    </input>
                   </div>
             </div>
         </nav>

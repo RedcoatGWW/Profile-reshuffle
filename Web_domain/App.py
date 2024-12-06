@@ -30,9 +30,11 @@ def allowed_file(filename):
 
     
 
-@app.route('/')
+@app.route('/') #This is boots the home page
 def index():
     return render_template('index.html')
+
+# --------------------------login page--------------------------
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -58,6 +60,8 @@ def login():
             return redirect('/signup')
     
     return render_template('login.html')
+
+# ------------------------tools post page ----------------------------
 
 @app.route('/tools', methods=['GET', 'POST'])
 def tools():
@@ -103,7 +107,7 @@ def tools():
 
     return render_template('tools.html', posts=posts)
 
-        
+# ------------------------------------signup---------------------
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -125,7 +129,7 @@ def signup():
                 filename = secure_filename(image.filename)
                 profilepic = os.path.join(app.config['UPLOAD_FOLDER'], filename)
                 image.save(profilepic)
-                profilepic = os.path.join('uploads', filename).replace('\\', '/')
+                profilepic = os.path.join('static/uploads', filename).replace('\\', '/')
 
             with get_db_connection() as connection:
                 cursor = connection.cursor()
@@ -152,6 +156,8 @@ def signup():
     return render_template('signup.html')
     
     return render_template('signup.html')
+
+# -----------------------account page----------------------
 
 @app.route('/account')
 def account():
@@ -184,6 +190,7 @@ def logout():
         connection.commit()
 
     session.pop('email', None)
+    username = session.get('username')
     print(f"user, {username} has logged out")
     return redirect('/')
 
@@ -216,6 +223,7 @@ class ContactForm(FlaskForm):
     message = TextAreaField('Message', validators=[DataRequired()])
     submit = SubmitField('Send Message')
 
+# -------------------add tool------------------
 
 @app.route('/addtool', methods=['POST','Get'])
 def addtool():
@@ -239,9 +247,10 @@ def addtool():
     else: 
         return render_template('addtool.html')
 
+# ------------------------------Delete Account---------------------------
 
 @app.route('/delete_account', methods=['POST'])
-def deleted_account():
+def delete_account():
     if 'username' not in session:
         return redirect(url_for('index'))
 
@@ -251,8 +260,13 @@ def deleted_account():
         with get_db_connection() as connection:
             cursor = connection.cursor()
 
-            # Delete the user from the users table (including their username and password)
-            cursor.execute("DELETE FROM users WHERE username = %s", (username,))
+            # Call the stored procedure to delete the user and related rows
+            cursor.callproc('prc_delete_user', (username,))
+            
+            # Consume any unread results
+            for result in cursor.stored_results():
+                result.fetchall()
+
             connection.commit()
 
         # Log the user out by clearing the session
@@ -264,6 +278,69 @@ def deleted_account():
 
     # Redirect to the home page after successful deletion
     return redirect(url_for('index'))
+
+# -----------------------------Bookmarks-------------------------
+
+@app.route('/bookmark_post/<int:post_id>', methods=['POST'])
+def bookmark_post(post_id):
+    if 'username' not in session:
+        return redirect(url_for('index'))
+
+    username = session['username']
+    try:
+        with get_db_connection() as connection:
+            cursor = connection.cursor()
+
+            # Check if the post exists in the posts table
+            cursor.execute("SELECT id FROM posts WHERE id = %s", (post_id,))
+            post = cursor.fetchone()
+
+            if not post:
+                raise Exception(f"Post with id {post_id} does not exist.")
+
+            # Check if the post is already bookmarked
+            cursor.execute("SELECT * FROM bookmarks WHERE username = %s AND post_id = %s", (username, post_id))
+            bookmark = cursor.fetchone()
+
+            if bookmark:  # If the post is already bookmarked, remove it
+                delete_query = "DELETE FROM bookmarks WHERE username = %s AND post_id = %s"
+                cursor.execute(delete_query, (username, post_id))
+            else:  # If it's not bookmarked, add it
+                insert_query = "INSERT INTO bookmarks (username, post_id) VALUES (%s, %s)"
+                cursor.execute(insert_query, (username, post_id))
+
+            connection.commit()
+    except Exception as e:
+        print(f"Error bookmarking post: {e}")
+    return redirect(url_for('account'))
+
+
+
+@app.route('/delete_post/<int:post_id>', methods=['POST'])
+def delete_post(post_id):
+    if 'username' not in session:
+        return redirect(url_for('index'))
+
+    try:
+        with get_db_connection() as connection:
+            cursor = connection.cursor()
+
+            # First, delete related entries in the post_hashtags table
+            cursor.execute("DELETE FROM post_hashtags WHERE post_id = %s", (post_id,))
+            connection.commit()
+
+            # Optionally, delete related bookmarks (if any)
+            cursor.execute("DELETE FROM bookmarks WHERE post_id = %s", (post_id,))
+            connection.commit()
+
+            # Finally, delete the post
+            query = "DELETE FROM posts WHERE id = %s AND username = %s"
+            cursor.execute(query, (post_id, session['username']))
+            connection.commit()
+
+    except Exception as e:
+        print(f"Error deleting post: {e}")
+    return redirect(url_for('profile'))
 
 
 if __name__ == '__main__':

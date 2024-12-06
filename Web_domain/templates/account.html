@@ -62,6 +62,7 @@
                         <input type="file" id="fileInput" style="display: none;" onchange="changeImage(event)" />
                     </div> -->      
                     <!-- Display the profile photo if available -->
+                     <!-- Same issues as in the tools.html file. -->
                     {% if profilepic %}
                         <img src="{{ url_for('static', filename='profilepic') }}" alt="Profilepic" id="profilepic" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
                     {% else %}
@@ -79,7 +80,7 @@
                     </div>
                 </div>
                 
-                <div class="nav-item"><a class="btn btn-primary mt-3" href="{{ url_for('addtool') }}">Add Tool</a>
+                <div class="nav-item"><a class="btn btn-primary mt-3" href="{{ url_for('tools') }}">Add Tool</a>
                 
                 </div>
                     
@@ -88,10 +89,11 @@
 
 
                 </div>
+                <form action="delete_account" method="POST">
+                    <button type="submit">Delete</button>
+                </form>
             </section>
-            <div class = form)
-            <button type = "submit" name = "delete_account" style="background:red;" class="btn btn-primary mt-3">Delete Account</button>
-            </div>
+            
         </header>
 
         <footer class="footer py-4">

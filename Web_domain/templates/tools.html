@@ -16,78 +16,79 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="../static/css/styles.css" rel="stylesheet" />
     </head>
-    <body id="page-top">
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-            <div class="container">
-                <a  href="{{ url_for('index') }}"> <img src="../static/assets/img/nav-logo.png" alt="..." width="70px" height="70px"> </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
-                    <i class="fas fa-bars ms-1"></i>
+<body id="page-top">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+        <div class="container">
+            <a  href="{{ url_for('index') }}"> <img src="../static/assets/img/nav-logo.png" alt="..." width="70px" height="70px"> </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars ms-1"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">Tech Stack</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">Team</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('account') }}">{{username}}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+                </ul>
+            </div>
+                <div class="form-outline" data-mdb-input-init>
+                    <input type="search" id="sbar" class="form-control" placeholder="Search for tools"/>
+                </div>
+                <button type="button" class="btn btn-primary" data-mdb-ripple-init>
+                    <i class="fas fa-search"></i>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">Tech Stack</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">Team</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ url_for('account') }}">{{username}}</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
-                    </ul>
                 </div>
-                    <div class="form-outline" data-mdb-input-init>
-                      <input type="search" id="sbar" class="form-control" placeholder="Search for tools"/>
-                    </div>
-                    <button type="button" class="btn btn-primary" data-mdb-ripple-init>
-                      <i class="fas fa-search"></i>
-                    </button>
-                  </div>
-            </div>
-        </nav>
+        </div>
+    </nav>
 
-        <section class="page-section" id="contact">
-            <div id="posts" class="profile-content">
-                <h3>Create Post</h3>
-                <form action="{{ url_for('tools') }}" method="POST" class="toolspost" enctype="multipart/form-data">
-                    
-                    <textarea name="title" rows="1" cols="10" placeholder="What is the tool?"></textarea><br>
-                    <textarea name="category" rows="1" cols="10" placeholder="What is the tools category i.e backend?"></textarea><br>
-                    <textarea name="company" rows="1" cols="10" placeholder="Who created/owns the tool?"></textarea><br>
-                    <textarea name="content" rows="4" cols="20" placeholder="What does the tool do? Post a link at the end"></textarea><br>
-                    
-                    <!-- <input type="file" name="image" accept="image/*"><br> -->
-                    <button type="submit">Post</button>
-                </form>
-                
-                <div class="post-container">
-                    {% if posts %}
-                        {% for post in posts %}
-                            <div class="post">
-                                <div class="post-header">
-                                    <img src="../static/assets/img/gnelf.png" alt="post image" style="max-width: 300px; height: auto; border-radius: 50%;">
-                                    <br><strong>{{ post[1] }}</strong><br> <!-- Display username of the poster -->
-                                    <strong>{{ post[3] }}</strong><br> <!-- Display title of the post -->
-                                    <strong>Category: {{ post[5] }}</strong><br> <!--Display the category of the tool -->
+<section class="page-section" id="contact">
+    <div id="posts" class="profile-content">
+        <h3>Create Post</h3>
+        <form action="{{ url_for('tools') }}" method="POST" class="toolspost" enctype="multipart/form-data">
+            
+            <textarea name="title" max-width = "50%" rows="1" cols="10" placeholder="What is the tool?"></textarea><br>
+            <textarea name="category" max-width = "50%" rows="1" cols="10" placeholder="What is the tools category i.e backend?"></textarea><br>
+            <textarea name="company" max-width = "50%" rows="1" cols="10" placeholder="Who created/owns the tool?"></textarea><br>
+            <textarea name="content" max-width = "50%" rows="4" cols="20" placeholder="What does the tool do? Post a link at the end"></textarea><br>
+            
+            <!-- <input type="file" name="image" accept="image/*"><br> -->
+            <button type="submit">Post</button>
+        </form>
+        
+        <div class="post-container">
+            {% if posts %}
+                {% for post in posts %}
+                    <div class="post">
+                        <div class="post-header">
+                            <img src="../static/assets/img/gnelf.png" alt="post image" style="max-width: 30px; height: auto; border-radius: 50%;">
+                            <strong>{{ post[1] }}</strong><br> <!-- Display username of the poster -->
+                            <strong>{{ post[3] }}</strong><br> <!-- Display title of the post -->
+                            <strong>Category: {{ post[5] }}</strong><br> <!--Display the category of the tool -->
 
-                                    <strong>Creator/Owner: {{ post[4] }}</strong><br> <!-- Display company of the tool -->
-                                </div>
-                                
-                                <div class="post-body">
-                                    <p>{{ post[2] }}</p>
-                                    {% if post[3] %}
-                                        <img src="{{ url_for('static', filename=post[3]) }}" alt="post image" style="max-width: 300px; height: auto">
-                                    {% endif %}
-                                </div>
-                                <div>
-                                </div>
-                            </div>
-                            {% endfor %}
-                            {% else %}
-                                <p>Its so quiet here :c  Be the first to post!</p>
+                            <strong>Creator/Owner: {{ post[4] }}</strong><br> <!-- Display company of the tool -->
+                            
+                        </div>                                
+                        <div class="post-body">
+                            <p>{{ post[2] }}</p>
+                            {% if post[3] %}
+                                <img src="{{ url_for('static', filename=post[3]) }}" alt="post image" style="max-width: 300px; height: auto">
                             {% endif %}
-                </div>
-            </div>
-        </section>
+                            <button type="submit" class="btn btn-secondary" name = "/bookmark_post">Bookmark</button>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                        <p>Its so quiet here :c  Be the first to post!</p>
+                    {% endif %}
+                    
+    </div>
+</section>
+<button type="button" class="btn btn-secondary" name"/bookmark_post">Bookmark</button>
+
 
         <!-- Contact-->
         <!-- <section class="page-section" id="contact">
