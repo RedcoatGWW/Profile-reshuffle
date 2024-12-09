@@ -10,6 +10,8 @@
 - [Future Plans](#future)
 - [References](#references)
 - [Section 2](#section2)
+- [Risk assessment](#riskassessment2)
+- [Version control 2](#versioncontrol2)
 - [Real World Links](#realworldlinks)
 - [User Journey Revised](#userjourney2)
 - [Conclusion](#conclusion)
@@ -251,10 +253,6 @@ query = "SELECT * FROM users WHERE username = %s AND password = %s"
 cursor.execute(query, (username, password)) -->
 
 This ensures that the SQL query can't be bypassed with 'admin' variables.
-
-
-
-
 
 <a id="versioncontrol2"></a>
 
