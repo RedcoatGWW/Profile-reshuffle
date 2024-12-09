@@ -50,9 +50,9 @@ def login():
 
         if results:
             session['email'] = email
-            session['username'] = results[0][1]  # Assuming username is the first column
-            session['profilepic'] = results[0][5]  # Assuming profilepic is the sixth column
-            update_query = 'UPDATE users SET logged_in = 1 WHERE email = %s'
+            session['username'] = results[0][1]  # This finds the username
+            session['profilepic'] = results[0][5]  # This finds the profile picture
+            update_query = 'UPDATE users SET logged_in = 1 WHERE email = %s' # Update the logged_in column to display a user is logged in
             cursor.execute(update_query, (email,))
             cnx.commit()
             return redirect('/account')
@@ -69,11 +69,11 @@ def tools():
         return redirect(url_for('index'))
     
     if request.method == 'POST':
-        print(request.form)  # Debugging statement
-        if not all(key in request.form for key in ('title', 'category', 'company', 'content')):
+        print(request.form)  
+        if not all(key in request.form for key in ('title', 'category', 'company', 'content')): # Check if all required fields are present
             return "Missing form fields", 400
         
-        title = request.form['title']
+        title = request.form['title'] #This collects data of the form
         category = request.form['category']
         company = request.form['company']
         content = request.form['content']
@@ -88,7 +88,7 @@ def tools():
                 post_id = cursor.lastrowid #creates id for each post
 
                 connection.commit()
-        except mysql.connector.Error as err:
+        except mysql.connector.Error as err: #This checks for errors and displays a message
             print(f"Post failed: {err}")
         except Exception as e:
             print(f"An error occurred: {e}")
@@ -117,7 +117,7 @@ def signup():
             return "Missing form fields", 400
         
         try:
-            username = request.form['username']
+            username = request.form['username'] #This collects data of the form
             password = request.form['password']
             email = request.form['email']
             phone = request.form['phone']
@@ -134,15 +134,15 @@ def signup():
             with get_db_connection() as connection:
                 cursor = connection.cursor()
                 
-                # Check if the email is already taken
+                # this Checks if the email or username is already taken
                 check_query = 'SELECT * FROM users WHERE email = %s'
                 cursor.execute(check_query, (email,))
                 if cursor.fetchone():
-                    return "Email is already taken", 69
+                    return "Email is already taken", 69# this Prints an error message is they are taken
                 check_query = 'SELECT * FROM users WHERE username = %s'
                 cursor.execute(check_query, (username,))
                 if cursor.fetchone():
-                    return "Username is already taken", 69
+                    return "Username is already taken", 69# this Prints an error message is they are taken
                 
                 query = 'INSERT INTO users (username, password, email, phone, interests, profilepic) VALUES (%s, %s, %s, %s, %s, %s)'
                 cursor.execute(query, (username, password, email, phone, interests, profilepic))
@@ -150,7 +150,7 @@ def signup():
 
             return redirect(url_for('index'))
         except Exception as e:
-            print(f"Error: {e}")  # Print the error message
+            print(f"Error: {e}")  
             return "An error occurred", 500
 
     return render_template('signup.html')
@@ -168,19 +168,23 @@ def account():
         return render_template('account.html', email=email, username=username, profilepic=profilepic)
     else:
         return redirect(url_for('login'))
+    
+#  -------------------------logged in----------------------   
 
 @app.route('/loggedin')
 def loggedin():
-    if 'email' in session:
+    if 'email' in session: # This creates a session for the user
         email = session['email']
         username = session['username']
         return render_template('loggedin.html', email=email, username=username)
     else:
         return redirect('/')
+    
+# ----------------------logout----------------------
 
 @app.route('/logout')
 def logout():
-    if 'username' not in session:
+    if 'username' not in session: # This checks if the user is logged in    
         return redirect(url_for('login'))
 
     with get_db_connection() as connection:
@@ -189,7 +193,7 @@ def logout():
         cursor.execute(query, (username,))
         connection.commit()
 
-    session.pop('email', None)
+    session.pop('email', None) # This removes the current users session
     username = session.get('username')
     print(f"user, {username} has logged out")
     return redirect('/')
@@ -261,7 +265,7 @@ def delete_account():
             cursor = connection.cursor()
 
             # Call the stored procedure to delete the user and related rows
-            cursor.callproc('prc_delete_user', (username,))
+            cursor.callproc('prc_delete_user', (username,)) # this calls the stored procedure to remove data from database
             
             # Consume any unread results
             for result in cursor.stored_results():
@@ -308,7 +312,7 @@ def bookmark_post(post_id):
         print(f"Error bookmarking post: {e}")
     return redirect(url_for('account'))
 
-
+# ----------------------Delete post --------------------
 
 @app.route('/delete_post/<int:post_id>', methods=['POST'])
 def delete_post(post_id):
