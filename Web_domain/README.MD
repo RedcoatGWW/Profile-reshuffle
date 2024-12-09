@@ -197,16 +197,19 @@ I have attempted to create a button that would allow the user to delete their ac
 
 After writing this top paragraph i reattempted by researching further into stored procedures and found that the way i was calling the tables was causing issues. As MySQL works on a ordered basis, i had to ensure that the child tables where being called before the parent. This has resolved the issue. The MySQL code below is my PRC and is also displayed as a company standard with modification history attatched.
 
-<!-- CREATE DEFINER=`root`@`localhost` PROCEDURE `prc_delete_user`(IN username VARCHAR(255))
-BEGIN
-    /*
+
+    CREATE DEFINER=`root`@`localhost` 
+    PROCEDURE `prc_delete_user`(IN username VARCHAR(255))
+
     Author: Cameron
+
     Date Created: 06/12/2024
+
     Description: Allows users to delete their information from the server
 
     Modification History:
     MODIFIED BY     ON DATE     MODIFICATION
-    */
+    
     
     -- Delete posts related to users with the given username
     DELETE FROM posts
@@ -216,7 +219,7 @@ BEGIN
     DELETE FROM users 
     WHERE username = username;
 
-END -->
+
 
 Further to this error, i have now found that the function is now deleting all users within the database. I am unsure of why this is so i will return back at a later date.
 
@@ -243,14 +246,18 @@ As this is a local hosted project all the data used is fabricated and only held 
 Within my App.py, credentials for my host connection is hardcoded within the app. This of course would not happen in a real world scenario as this directly allows access to all information within the server. This can be avoided by using environment variables such as libraries like 'python-dotnev' to load and store database credentials within secure .env files.
 
 ### SQL injections
-SQL Injections is one of the most common forms of website hacking. Forms being the biggest culprit of this form of attack, SQL injections is the process of 'injecting' malicious code into an SQL statement through the web bage form directly. I have various queries within my code such as ('SELECT * FROM users WHERE email = %s AND password = %s') that directly connects to my server exposing it to attacks and potentially causing data leaks or deletion. In order to avoid SQL injections, proper parameters are put in place to insure those attempting to access the website are who they say they are.
+SQL Injections is one of the most common forms of website hacking. Forms being the biggest culprit of this form of attack, SQL injections is the process of 'injecting' malicious code into an SQL statement through the web bage form directly. I have various queries within my code such as 
+
+    ('SELECT * FROM users WHERE email = %s AND password = %s') 
+
+That directly connects to my server exposing it to attacks and potentially causing data leaks or deletion. In order to avoid SQL injections, proper parameters are put in place to insure those attempting to access the website are who they say they are.
 
 Here is an example of a safe query i have implamented.
 
-<!-- username = request.form['username']
-password = request.form['password']
-query = "SELECT * FROM users WHERE username = %s AND password = %s"
-cursor.execute(query, (username, password)) -->
+    username = request.form['username']
+    password = request.form['password']
+    query = "SELECT * FROM users WHERE username = %s AND password = %s"
+    cursor.execute(query, (username, password))
 
 This ensures that the SQL query can't be bypassed with 'admin' variables.
 
