@@ -1,5 +1,5 @@
 ## Contents
-- [Project overview](#project)
+- [Section 1 Project overview](#project)
 - [Choice of Tech Stack](#techstack)
 - [Version Control](#versioncontrol)
 - [Installation Guide](#installation)
@@ -9,6 +9,10 @@
 - [Legal and Ethical](#legal)
 - [Future Plans](#future)
 - [References](#references)
+- [Section 2](#section2)
+- [Real World Links](#realworldlinks)
+- [Conclusion](#conclusion)
+
 
 <a id="project"></a>
 # Project Overview
@@ -27,7 +31,9 @@ My choice of the tech stack for this project includes: JavaScript, MySQL, and Az
 - Azure will be the server host for the website once it is live. Although I have had some issues with hosting the server which I am working on, so the website is running on a local server. This is a temporary substitute until the issues are resolved. All of the assets such as images are stored locally so the website demo can be viewed appropriately.
 
 <a id="versioncontrol"></a>
-# Version Control
+# Version Control 
+
+For assessment 2 please visit [Version Control 2](#versioncontrol2)
 
 I have ensured that with any major update to use Git to push and sync to GitHub. I had started this project through a separate repository to ensure there was a backup in case of technical issues or corruption.
 
@@ -102,6 +108,7 @@ The sign-up and log-in sections are minimalistic and compact, so users aren’t 
 
 # Legal and ethical considerations
 <a id="leagl"></a>
+
 ### GDPR
 To ensure compliance with GDPR, this project demo is currently hosted on a secure local server. As the project progresses, I will ensure that any server provider I use fully adheres to the GDPR Data Protection Act 2018. For user transparency, all data handling practices will be clearly outlined in the terms and conditions, so users understand exactly what information they’re sharing when creating an account. Overall, data collection will be minimized for user protection, and only optional information that users willingly provide—such as hobbies and mutual interests—will be included. The sensitive data provided by the user for account creation will only be held for up to 6 months of no activity before they are notified that their data will be cleared for their protection. This will ensure that if a user no longer requires the services of the website, their data will be safely removed from the servers.
 
@@ -113,6 +120,9 @@ In the image below you can see the company credited below the description of the
 
 ### Moderation
 Since this is a community-driven website that relies on user contributions to grow, moderation of comments and linked tools will be essential. In the future, implementing an AI-powered moderation tool, such as (UserWay, 2024) could be beneficial. This type of tool is specifically designed to detect and filter out racist, biased, and socially unacceptable language, helping to maintain a safe environment for all users. Additionally, for any files being uploaded by users, a screening system would also prove of use for any malicious data mining tool being used to breach users data.
+
+### Further Data Handelling
+Since initiating my database i have added further security measures to my data handelling. I have tested and reinforced that users signed into the website are locked to their own session via session IDs and this also ties and information that they enter on the website via the tools or contact forms. I have also added a function for users to full deleted their data manually which removes all connection of that user to all parts of the database. This has been thouroughly tested and data deletion confirmed.
 
 
 ## Future Plans
@@ -130,9 +140,10 @@ My goal is to expand the website into a forum-like platform where users can expl
 - Battleye. (2024). https://www.battleye.com
 - Data Protection Act 2018 (c.12) London: HMSO. https://www.legislation.gov.uk/ukpga/2018/12/contents/enacted
 - Userway. (2024). https://userway.org/moderator/
+- Runescape. (2024). https://oldschool.runescape.com
 
-#Section 2
-<a id="section 2"></a>
+# Section 2
+<a id="section2"></a>
 
 ## Error handelling
 
@@ -169,8 +180,45 @@ BEGIN
 
 END -->
 
+Further to this error, i have now found that the function is now deleting all users within the database. I am unsure of why this is so i will return back at a later date.
+
+## Bookmarks and likes
+
+Similar to the profile pictures, i was unable to get the information from the server to communicate with the website to display it. I had tried various ways such as calling it through MySQL directly, or even calling it the same way as i had with usernames however it wasnt finding any variables and just returning them as 'NULL'. In order to fix this issue i believe a restructure of both my tools page and account page will be required as their may be conflictions with the containers.
+
+## Bootstrap
+
+I have come to the realisation at the end of this project that bootstrap is a reliable tool for website creation, however, it cannot be souly the base foundation for it. As the css and html is so complex with their own variety of variable names and customizations, one change may overhaul the website with the chance of breaking everything (which i experience numerous times). In future, i will be looking to work on either a more bare bones template to speed up the process or even start the whole thing from scratch. One of which is much more time consuming than the latter.
+
 ## Entity Relationship Diagram
 
 Below is my ERD that shows which of my forms are connected. And how they pull data for one another. The Key factor from them is that it takes the username for the Session ID so the server knows which user it is communicating with. The only table not connected is the contact form as the intention for this is to be for the use of everyone even if the user doesnt have an account. 
-<img src="static/assets/screenshots/ERD.png" alt="user journey1" width="500"/>
+<img src="static/assets/screenshots/ERD.png" alt="ERD" width="500"/>
 
+<a id="versioncontrol2"></a>
+
+## Version control 2
+
+For this submission i have moved to a second repository in order to separate the assignments. The same rules have applied before and i have ensured that i have committed and changes i have made in order to keep my progress safe.
+
+Here is the new repository link:  https://github.com/RedcoatGWW/Profile-reshuffle.git
+
+<a id="realworldlinks"></a>
+## Real world links
+Although it is not a tool website or much related to my project, I enjoy the design and simplicity of Jagex's  OldSchool Runescape's Landing page. With its simple design and compact navigation it ensure that users aren't lost or overwhelmed as soon as they click on their website.
+
+<img src="static/assets/screenshots/Realworld example.png" alt="user journey1" width="500"/>
+
+This is what i had in mind for my website, this was slightly set back due to the nature of the bootstrap i had decided to use but the methods are still used. For example my navigation is small and compact and not in the face of the user cluttering the screen.
+
+<img src="static/assets/screenshots/navexample.png" alt="user journey1" width="500"/>
+Whilst the design aspect isn't there i wanted to capture the users feeling when they first land on the page.
+
+<a id="conclusion"></a>
+
+# Conclusion
+Reflecting on this project overall i am happy with the progress i have made. I have come to realise the full extent of database integrity and the pain that comes along with trialling and error. This has been shown by the technical errors i have been experiencing like with the Profile pictures and bookmark tab. My main focus with this assessment was to understand the workings of MySQL along side an active website and i have strong beliefs i have done that with this prototype.
+
+things to add:
+-updated gaant
+-updated user journey

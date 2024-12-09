@@ -50,8 +50,8 @@ def login():
 
         if results:
             session['email'] = email
-            session['username'] = results[0][1]  # username is the second column
-            session['profilepic'] = results[0][5]  # profilepic is the sixth column
+            session['username'] = results[0][1]  # Assuming username is the first column
+            session['profilepic'] = results[0][5]  # Assuming profilepic is the sixth column
             update_query = 'UPDATE users SET logged_in = 1 WHERE email = %s'
             cursor.execute(update_query, (email,))
             cnx.commit()
@@ -284,19 +284,13 @@ def delete_account():
 @app.route('/bookmark_post/<int:post_id>', methods=['POST'])
 def bookmark_post(post_id):
     if 'username' not in session:
-        return redirect(url_for('index'))
+        return redirect(url_for('login'))
 
-    username = session['username']
+    username = session['username']  # Get the logged-in user's username
+
     try:
         with get_db_connection() as connection:
             cursor = connection.cursor()
-
-            # Check if the post exists in the posts table
-            cursor.execute("SELECT id FROM posts WHERE id = %s", (post_id,))
-            post = cursor.fetchone()
-
-            if not post:
-                raise Exception(f"Post with id {post_id} does not exist.")
 
             # Check if the post is already bookmarked
             cursor.execute("SELECT * FROM bookmarks WHERE username = %s AND post_id = %s", (username, post_id))
