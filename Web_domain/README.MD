@@ -46,6 +46,7 @@ https://github.com/CS-LTU/com4113-tech-stack-summative-assessment-RedcoatGWW.git
 Here is a step-by-step guide on how to set up the development environment. This project was developed using Visual Studio Code (VSC) and will be required as well as installing the Live Server extension as the only software prerequisite for this project.
 
 There is a potential error where if the user attempts to open this directly through GitHub, due to the local files, this may end up corrupting the page leading to blank pages, image files not loading or even the format corruption. To ensure that doesnt happen, the guide below is required to be followed for the current version of the Demo.
+## Version 1 - skip past these steps for flask installation
 ### Step 1:
 Open VSC and create a new instance.
 
@@ -72,7 +73,41 @@ Whilst on the index.HTML page, launch the live server in the bottom right.
 ### Step 6:
 The website will launch on your preferred browser.
 
-### Technical errors
+## Version 2
+### Step 1
+Connect to directory.
+<img src="static/assets/screenshots/flask1.png" alt="install flask" width="500"/>
+
+### Step 2:
+Create Virtual Environment
+<img src="static/assets/screenshots/flask2.png" alt="install flask" width="500"/>
+
+The live server will be displayed in the Explorer
+<img src="static/assets/screenshots/flaskliveserver.png" alt="install flask" width="500"/>
+
+### Step 3:
+Activate Virtual Environment
+<img src="static/assets/screenshots/flask3.png" alt="install flask" width="500"/>
+
+### Step 4:
+Install Flask
+<img src="static/assets/screenshots/flask4.png" alt="install flask" width="500"/>
+
+### Step 5: 
+Install MySQL connector for connection with database
+<img src="static/assets/screenshots/mysqlconnector.png" alt="install flask" width="500"/>
+
+### Step 6:
+Install WTforms for the form collection
+<img src="static/assets/screenshots/wtforms.png" alt="install flask" width="500"/>
+
+### Step 7:
+Run Flask
+<img src="static/assets/screenshots/flaskrun.png" alt="install flask" width="500"/>
+
+From here hold control and click on the link in the terminal and this will load the website in your browser.
+
+## Technical errors
 
 The main trouble that I have faced is mainly through using Bootstrap. As this is my first time i have used this, I spent most of my time learning the structure of how the template was built. After adding the additions to my navigation bar, it seemed that the template for the mobile version had become warped. This was due to the styling I used for my custom logo as I was using 'px' instead of '%' for the styling.
 
@@ -82,10 +117,9 @@ I spent a lot of time working on spacings between my headers and the navigation 
 I have had some styling issues with one of the containers where using a similar format for a form make it unable to style correctly. This page will need to be reconstructed in order for the styling to set properly.
 <img src="static/assets/screenshots/formaterror.png" alt="format error" width="300"/>
 
-<a id="plan"></a>
-
 During bug testing, I received an error in my CSS for ``-webkit-appearance: textfield;``, This occurs twice throughout. This is a non-standard way of styling, used for older versions of browsers such as Safari, Firefox, and Edge. However, despite the error, no visual issues occurred, so I have left this in to avoid causing any potential conflicts that might occur from disabling it.
 
+<a id="plan"></a>
 
 # Project plan
 
