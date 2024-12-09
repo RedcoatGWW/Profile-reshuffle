@@ -136,7 +136,7 @@ I have included six pop-up modals so users can get a glimpse of the content with
 
 The sign-up and log-in sections are minimalistic and compact, so users aren’t overwhelmed or bombarded with information. Links to the terms and conditions are available at the bottom for those who wish to review them. Once signed in, users are routed back to the main page, where they gain access to new options, such as editing their profile picture (selected in the sign-up form), changing their password, and reviewing previously entered information.
 
-#### Below is a visual representation of the user's journey through the current live demo.
+### Below is a visual representation of the user's journey through the current live demo.
 
 <img src="static/assets/screenshots/UserJourney.png" alt="user journey1" width="500"/>
 
@@ -161,6 +161,7 @@ Since initiating my database i have added further security measures to my data h
 
 ## Future Plans
 <a id="future"> </a>
+
 My goal is to expand the website into a forum-like platform where users can explore a variety of tools categorized by type and functionality. Each tool will feature links to relevant resources, user reviews, and ratings to help others make informed decisions. This will encourage a sense of community, allowing users to share insights, ask questions, and provide feedback on different tools, ultimately creating collaborative space for learning and discovery.
 
 ### References
@@ -239,6 +240,7 @@ Here is the new repository link:  https://github.com/RedcoatGWW/Profile-reshuffl
 
 <a id="realworldlinks"></a>
 ## Real world links
+
 Although it is not a tool website or much related to my project, I enjoy the design and simplicity of Jagex's  OldSchool Runescape's Landing page. With its simple design and compact navigation it ensure that users aren't lost or overwhelmed as soon as they click on their website.
 
 <img src="static/assets/screenshots/Realworld example.png" alt="user journey1" width="500"/>
@@ -246,13 +248,23 @@ Although it is not a tool website or much related to my project, I enjoy the des
 This is what i had in mind for my website, this was slightly set back due to the nature of the bootstrap i had decided to use but the methods are still used. For example my navigation is small and compact and not in the face of the user cluttering the screen.
 
 <img src="static/assets/screenshots/navexample.png" alt="user journey1" width="500"/>
+
 Whilst the design aspect isn't there i wanted to capture the users feeling when they first land on the page.
+
+# User Journey Revised
+Below is the updated user journey with the server connections.
+
+<img src="static/assets/screenshots/UserJourneyRevised.png" alt="user journey1" width="500"/>
+
 
 <a id="conclusion"></a>
 
 # Conclusion
 Reflecting on this project overall i am happy with the progress i have made. I have come to realise the full extent of database integrity and the pain that comes along with trialling and error. This has been shown by the technical errors i have been experiencing like with the Profile pictures and bookmark tab. My main focus with this assessment was to understand the workings of MySQL along side an active website and i have strong beliefs i have done that with this prototype.
 
+I have updated my previous gaant chart, I found my time management was much better once i had understood the process. I had decided to continue with my previous assessment's website instead of creating a new one for time purposes. You can see my revised gaant chart additions below
+
+<img src="static/assets/screenshots/gaant2.png" alt="user journey1" width="500"/>
+
 things to add:
--updated gaant
 -updated user journey
