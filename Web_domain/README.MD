@@ -11,6 +11,7 @@
 - [References](#references)
 - [Section 2](#section2)
 - [Real World Links](#realworldlinks)
+- [User Journey Revised](#userjourney2)
 - [Conclusion](#conclusion)
 
 
@@ -251,6 +252,8 @@ This is what i had in mind for my website, this was slightly set back due to the
 
 Whilst the design aspect isn't there i wanted to capture the users feeling when they first land on the page.
 
+<a id="userjourney2"></a>
+
 # User Journey Revised
 Below is the updated user journey with the server connections.
 
@@ -265,6 +268,3 @@ Reflecting on this project overall i am happy with the progress i have made. I h
 I have updated my previous gaant chart, I found my time management was much better once i had understood the process. I had decided to continue with my previous assessment's website instead of creating a new one for time purposes. You can see my revised gaant chart additions below
 
 <img src="static/assets/screenshots/gaant2.png" alt="user journey1" width="500"/>
-
-things to add:
--updated user journey
