@@ -231,6 +231,31 @@ I have come to the realisation at the end of this project that bootstrap is a re
 Below is my ERD that shows which of my forms are connected. And how they pull data for one another. The Key factor from them is that it takes the username for the Session ID so the server knows which user it is communicating with. The only table not connected is the contact form as the intention for this is to be for the use of everyone even if the user doesnt have an account. 
 <img src="static/assets/screenshots/ERD.png" alt="ERD" width="500"/>
 
+<a id="riskassessment2"></a>
+
+## Back End Risk Assessment
+
+As this is a local hosted project all the data used is fabricated and only held for as long as the session is up. For this prototype i have collected various point of weakness within my code.
+
+### Raw credidentials
+Within my App.py, credentials for my host connection is hardcoded within the app. This of course would not happen in a real world scenario as this directly allows access to all information within the server. This can be avoided by using environment variables such as libraries like 'python-dotnev' to load and store database credentials within secure .env files.
+
+### SQL injections
+SQL Injections is one of the most common forms of website hacking. Forms being the biggest culprit of this form of attack, SQL injections is the process of 'injecting' malicious code into an SQL statement through the web bage form directly. I have various queries within my code such as ('SELECT * FROM users WHERE email = %s AND password = %s') that directly connects to my server exposing it to attacks and potentially causing data leaks or deletion. In order to avoid SQL injections, proper parameters are put in place to insure those attempting to access the website are who they say they are.
+
+Here is an example of a safe query i have implamented.
+
+<!-- username = request.form['username']
+password = request.form['password']
+query = "SELECT * FROM users WHERE username = %s AND password = %s"
+cursor.execute(query, (username, password)) -->
+
+This ensures that the SQL query can't be bypassed with 'admin' variables.
+
+
+
+
+
 <a id="versioncontrol2"></a>
 
 ## Version control 2
